@@ -3,9 +3,23 @@ import "./App.css";
 
 const OMDB_KEY = process.env.REACT_APP_OMDB_KEY;
 
+const nominationList = localStorage.getItem("nominations")
+  ? JSON.parse(localStorage.getItem("nominations"))
+  : [];
+
 function App() {
   const [search, setSearch] = useState("");
   const [movies, setMovies] = useState([]);
+
+  const [nominations, setNominations] = useState(nominationList);
+
+  const nominateMovie = (movie) => {
+    setNominations([...nominations, movie]);
+  };
+
+  useEffect(() => {
+    localStorage.setItem("nominations", JSON.stringify(nominations));
+  }, [nominations]);
 
   const handleChange = (e) => {
     setSearch(e.target.value);
@@ -37,7 +51,18 @@ function App() {
       />
       <h1>{!!search ? `Results for "${search}"` : ""}</h1>
       {movies.Search?.map((m) => (
-        <p>{!!search ? `${m.Title} (${m.Year})` : ""}</p>
+        <>
+          <p>{!!search ? `${m.Title} (${m.Year})` : ""}</p>
+          <button onClick={(e) => nominateMovie(m)}>Nominate</button>
+        </>
+      ))}
+      <h1>Nominations</h1>
+      {nominations.map((n) => (
+        <>
+          <p>
+            {n.Title} ({n.Year})
+          </p>
+        </>
       ))}
     </div>
   );
