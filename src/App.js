@@ -11,10 +11,14 @@ function App() {
   const [search, setSearch] = useState("");
   const [movies, setMovies] = useState([]);
 
-  const [nominations, setNominations] = useState(nominationList);
+  const [nominations, updateNominations] = useState(nominationList);
 
   const nominateMovie = (movie) => {
-    setNominations([...nominations, movie]);
+    updateNominations([...nominations, movie]);
+  };
+
+  const removeMovie = (movie) => {
+    updateNominations(nominations.filter((nominees) => movie !== nominees));
   };
 
   useEffect(() => {
@@ -62,6 +66,7 @@ function App() {
           <p>
             {n.Title} ({n.Year})
           </p>
+          <button onClick={(e) => removeMovie(n)}>Remove</button>
         </>
       ))}
     </div>
