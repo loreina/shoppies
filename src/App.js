@@ -11,10 +11,6 @@ function App() {
     setSearch(e.target.value);
   };
 
-  const updateSearch = () => {
-    searchMovies(search);
-  };
-
   async function searchMovies(search) {
     const res = await fetch(
       `http://www.omdbapi.com/?apikey=${OMDB_KEY}&type=movie&s=${search}`
@@ -24,8 +20,12 @@ function App() {
   }
 
   useEffect(() => {
-    searchMovies();
-  }, []);
+    const timer = setTimeout(() => {
+      searchMovies(search);
+    }, 10);
+
+    return () => clearTimeout(timer);
+  }, [search]);
 
   return (
     <div>
@@ -34,7 +34,6 @@ function App() {
         placeholder="Search for a movie"
         value={search}
         onChange={handleChange}
-        onKeyDown={updateSearch}
       />
       <h1>{!!search ? `Results for "${search}"` : ""}</h1>
       {movies.Search?.map((m) => (
