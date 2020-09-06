@@ -13,10 +13,11 @@ const Box = styled.div`
 
 const Right = styled.div`
   margin: 0;
-  padding-left: 24px;
+  padding: 0 24px;
 `;
 
 const Poster = styled.img`
+  max-width: 40%;
   height: 100%;
   border-radius: 16px 0px 0px 16px;
 `;
