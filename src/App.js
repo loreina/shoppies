@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 
+import Movie from "./components/Movie/Movie";
+import Nav from "./components/Nav/Nav";
+import Search from "./components/Search/Search";
+
 const OMDB_KEY = process.env.REACT_APP_OMDB_KEY;
 
 const nominationList = localStorage.getItem("nominations")
@@ -47,17 +51,20 @@ function App() {
 
   return (
     <div>
-      <input
-        type="text"
-        placeholder="Search for a movie"
-        value={search}
-        onChange={handleChange}
-      />
+      <Nav>
+        <Search placeholder="Search" value={search} onChange={handleChange} />
+      </Nav>
+
       <h1>{!!search ? `Results for "${search}"` : ""}</h1>
       {movies.Search?.map((m) => (
         <>
-          <p>{!!search ? `${m.Title} (${m.Year})` : ""}</p>
-          <button onClick={(e) => nominateMovie(m)}>Nominate</button>
+          {!!search ? (
+            <Movie poster={m.Poster} title={`${m.Title} (${m.Year})`}>
+              <button onClick={(e) => nominateMovie(m)}>Nominate</button>
+            </Movie>
+          ) : (
+            ""
+          )}
         </>
       ))}
       <h1>Nominations</h1>
