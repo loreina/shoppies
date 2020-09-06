@@ -59,7 +59,11 @@ function App() {
       {movies.Search?.map((m) => (
         <>
           {!!search ? (
-            <Movie poster={m.Poster} title={`${m.Title} (${m.Year})`}>
+            <Movie
+              key={m.imdbID}
+              poster={m.Poster}
+              title={`${m.Title} (${m.Year})`}
+            >
               <button onClick={(e) => nominateMovie(m)}>Nominate</button>
             </Movie>
           ) : (
