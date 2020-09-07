@@ -7,7 +7,7 @@ const Box = styled.div`
   display: flex;
   flex-direction: row;
   position: sticky;
-  padding: 2rem;
+  margin: 2rem;
 `;
 
 const NavItem = styled.p`

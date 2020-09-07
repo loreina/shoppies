@@ -29,10 +29,6 @@ function App() {
     localStorage.setItem("nominations", JSON.stringify(nominations));
   }, [nominations]);
 
-  const handleChange = (e) => {
-    setSearch(e.target.value);
-  };
-
   async function searchMovies(search) {
     const res = await fetch(
       `http://www.omdbapi.com/?apikey=${OMDB_KEY}&type=movie&s=${search}`
@@ -52,25 +48,21 @@ function App() {
   return (
     <div>
       <Nav>
-        <Search placeholder="Search" value={search} onChange={handleChange} />
+        <Search value={search} setSearch={setSearch} />
       </Nav>
-
-      <h1>{!!search ? `Results for "${search}"` : ""}</h1>
-      {movies.Search?.map((m) => (
+      <h1>Results for "{search}"</h1>
+      {!!search ? (
         <>
-          {!!search ? (
-            <Movie
-              key={m.imdbID}
-              poster={m.Poster}
-              title={`${m.Title} (${m.Year})`}
-            >
-              <button onClick={(e) => nominateMovie(m)}>Nominate</button>
-            </Movie>
-          ) : (
-            ""
-          )}
+          <Movie
+            movies={movies}
+            nominateMovie={nominateMovie}
+            search={search}
+          />
         </>
-      ))}
+      ) : (
+        ""
+      )}
+
       <h1>Nominations</h1>
       {nominations.map((n) => (
         <>
