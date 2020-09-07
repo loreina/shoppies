@@ -1,10 +1,20 @@
 import React from "react";
 import styled from "styled-components";
 
+import Button from "../Button/Button";
+
 const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+`;
+
+const Heading = styled.h1`
+  font-size: 32px;
+  font-weight: bold;
+  margin-left: 2rem;
+  margin-bottom: 0;
+  width: 100%;
 `;
 
 const Box = styled.div`
@@ -55,9 +65,16 @@ const Title = styled.h2`
   margin: 0;
 `;
 
-export default function Movie({ nominateMovie, movies, search, ...props }) {
+export default function Movies({
+  isNominated,
+  movies,
+  nominateMovie,
+  nominations,
+  ...props
+}) {
   return (
     <>
+      <Heading>{props.heading}</Heading>
       <Wrapper>
         {movies.Search?.map((m) => (
           <Box key={m.imdbID}>
@@ -66,7 +83,12 @@ export default function Movie({ nominateMovie, movies, search, ...props }) {
               <Title>
                 {m.Title} ({m.Year})
               </Title>
-              <button onClick={(e) => nominateMovie(m)}>Nominate</button>
+              <Button
+                onClick={(e) => nominateMovie(m)}
+                disabled={isNominated(m) || nominations.length === 5}
+              >
+                {isNominated(m) ? "Nominated" : "Nominate"}
+              </Button>
             </Right>
           </Box>
         ))}

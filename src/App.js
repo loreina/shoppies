@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 
-import Movie from "./components/Movie/Movie";
+import Movies from "./components/Movies/Movies";
 import Nav from "./components/Nav/Nav";
 import Search from "./components/Search/Search";
 
@@ -24,6 +24,15 @@ function App() {
   const removeMovie = (movie) => {
     updateNominations(nominations.filter((nominees) => movie !== nominees));
   };
+
+  function isNominated(movie) {
+    for (let i = 0; i < nominations.length; i++) {
+      if (nominations[i].imdbID === movie.imdbID) {
+        return true;
+      }
+    }
+    return false;
+  }
 
   useEffect(() => {
     localStorage.setItem("nominations", JSON.stringify(nominations));
@@ -50,13 +59,15 @@ function App() {
       <Nav>
         <Search value={search} setSearch={setSearch} />
       </Nav>
-      <h1>Results for "{search}"</h1>
       {!!search ? (
         <>
-          <Movie
+          <Movies
+            heading={`Results for "${search}"`}
             movies={movies}
             nominateMovie={nominateMovie}
+            nominations={nominations}
             search={search}
+            isNominated={isNominated}
           />
         </>
       ) : (
