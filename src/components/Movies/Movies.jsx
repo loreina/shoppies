@@ -1,17 +1,20 @@
 import React from "react";
 import styled from "styled-components";
 
+import theme from "../../styles/theme";
 import Button from "../Button/Button";
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  margin-right: 0;
 `;
 
 const Heading = styled.h1`
   font-size: 32px;
   font-weight: bold;
+  color: ${theme.colors.ink.light};
   margin-left: 2rem;
   margin-bottom: 0;
   width: 100%;
@@ -20,11 +23,13 @@ const Heading = styled.h1`
 const Box = styled.div`
   width: 100%;
   height: 250px;
-  background-color: #242424;
+  background-color: ${theme.colors.white};
   display: flex;
   flex-direction: row;
   border-radius: 16px;
   margin: 2rem;
+  overflow-x: hidden;
+  filter: drop-shadow(0px 8px 20px rgba(69, 79, 91, 0.1));
 
   @media (min-width: 576px) {
     width: 100%;
@@ -48,6 +53,8 @@ const Box = styled.div`
 const Right = styled.div`
   margin: 0;
   padding: 0 24px;
+  display: flex;
+  flex-direction: column;
 `;
 
 const Poster = styled.img`
@@ -59,10 +66,28 @@ const Poster = styled.img`
 const Title = styled.h2`
   font-size: 24px;
   font-weight: bold;
-  color: white;
+  color: ${theme.colors.ink.light};
   padding: 16px 0;
   text-align: left;
   margin: 0;
+  display: inline-block;
+`;
+
+const Year = styled.p`
+  padding: 0 1rem;
+  font-size: 14px;
+  font-weight: bold;
+  margin: 0;
+  width: max-content;
+  color: ${theme.colors.white};
+  background: ${theme.colors.gold.base};
+  border-radius: 16px;
+`;
+
+const ButtonBox = styled.div`
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
 `;
 
 export default function Movies({
@@ -80,15 +105,16 @@ export default function Movies({
           <Box key={m.imdbID}>
             <Poster src={m.Poster} />
             <Right>
-              <Title>
-                {m.Title} ({m.Year})
-              </Title>
-              <Button
-                onClick={(e) => nominateMovie(m)}
-                disabled={isNominated(m) || nominations.length === 5}
-              >
-                {isNominated(m) ? "Nominated" : "Nominate"}
-              </Button>
+              <Title>{m.Title}</Title>
+              <Year>{m.Year}</Year>
+              <ButtonBox>
+                <Button
+                  onClick={(e) => nominateMovie(m)}
+                  disabled={isNominated(m) || nominations.length === 5}
+                >
+                  {isNominated(m) ? "Nominated" : "Nominate"}
+                </Button>
+              </ButtonBox>
             </Right>
           </Box>
         ))}

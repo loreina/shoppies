@@ -3,7 +3,7 @@ import "./App.css";
 
 import Movies from "./components/Movies/Movies";
 import Nav from "./components/Nav/Nav";
-import Search from "./components/Search/Search";
+import SearchBar from "./components/SearchBar/SearchBar";
 
 const OMDB_KEY = process.env.REACT_APP_OMDB_KEY;
 
@@ -57,7 +57,7 @@ function App() {
   return (
     <div>
       <Nav>
-        <Search value={search} setSearch={setSearch} />
+        <SearchBar value={search} setSearch={setSearch} />
       </Nav>
       {!!search ? (
         <>

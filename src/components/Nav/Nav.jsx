@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
+import theme from "../../styles/theme";
 import Logo from "../Logo/Logo";
 
 const Box = styled.div`
@@ -11,7 +12,7 @@ const Box = styled.div`
 `;
 
 const NavItem = styled.p`
-  color: white;
+  color: ${theme.colors.ink.light};
   padding: 0.2rem 3rem;
   margin: 0;
 `;
