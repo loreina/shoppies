@@ -14,6 +14,10 @@ const StyledButton = styled.button`
   padding: 10px 16px;
   cursor: pointer;
 
+  &:hover {
+    background-color: ${theme.colors.indigo.dark};
+  }
+
   &:disabled {
     cursor: default;
     opacity: 30%;

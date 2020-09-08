@@ -8,15 +8,34 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  width: 50%;
-  margin: 0 25%;
+  width: 90%;
+  margin: 0 5%;
+
+  @media (min-width: 576px) {
+    width: 80%;
+    margin: 0 10%;
+  }
+
+  @media (min-width: 768px) {
+    width: 80%;
+    margin: 0 10%;
+  }
+
+  @media (min-width: 992px) {
+    width: 80%;
+    margin: 0 10%;
+  }
+
+  @media (min-width: 1200px) {
+    width: 60%;
+    margin: 0 20%;
+  }
 `;
 
 const Heading = styled.h1`
   font-size: 32px;
   font-weight: bold;
   color: ${theme.colors.ink.light};
-  margin-left: 2rem;
   margin-bottom: 2rem;
   width: 100%;
   text-align: center;
@@ -71,7 +90,7 @@ const Year = styled.p`
 const ButtonBox = styled.div`
   position: absolute;
   right: 3rem;
-  bottom: 3rem;
+  bottom: 2.7rem;
 `;
 
 export default function Nominations({ movies, removeMovie, ...props }) {
@@ -89,7 +108,7 @@ export default function Nominations({ movies, removeMovie, ...props }) {
               <Title>{m.Title}</Title>
               <Year>{m.Year}</Year>
               <ButtonBox>
-                <Button onClick={(e) => removeMovie(m)}>Remove</Button>
+                <Button onClick={(e) => removeMovie(m)}>REMOVE</Button>
               </ButtonBox>
             </Right>
           </Box>

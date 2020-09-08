@@ -7,6 +7,7 @@ const gold = {
 
 const indigo = {
   base: "#5C6AC4",
+  dark: "#202E78",
 };
 
 const ink = {
