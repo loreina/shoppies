@@ -103,7 +103,10 @@ export default function Movies({
       <Wrapper>
         {movies.Search?.map((m) => (
           <Box key={m.imdbID}>
-            <Poster src={m.Poster} />
+            <Poster
+              src={m.Poster}
+              onError={(e) => (e.target.style.display = "none")}
+            />
             <Right>
               <Title>{m.Title}</Title>
               <Year>{m.Year}</Year>
