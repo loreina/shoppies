@@ -20,7 +20,8 @@ const NavItem = styled.p`
   margin: 0;
 
   @media (max-width: 576px) {
-    padding: 0.2rem 2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
 `;
 

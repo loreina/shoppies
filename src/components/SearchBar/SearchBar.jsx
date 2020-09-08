@@ -37,6 +37,8 @@ const Input = styled.input`
   }
 
   @media (max-width: 576px) {
+    width: 80%;
+
     &:focus {
       transition: margin-left 0.3s;
       margin-left: -10rem;
