@@ -7,8 +7,9 @@ import Button from "../Button/Button";
 import CTA from "../CTA/CTA";
 
 const Box = styled.div`
-  margin: 12rem 8rem;
-  width: 100%;
+  margin: 12rem 3rem;
+  width: 80%;
+  padding-bottom: 6rem;
 
   @media (min-width: 576px) {
     margin: 8rem 6rem;

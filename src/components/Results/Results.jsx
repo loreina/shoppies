@@ -8,6 +8,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  padding-bottom: 2rem;
 `;
 
 const Box = styled.div`

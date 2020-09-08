@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Nominations from "./pages/Nominations";
 import Search from "./pages/Search";
 
+import Footer from "./components/Footer/Footer";
 import Nav from "./components/Nav/Nav";
 
 const OMDB_KEY = process.env.REACT_APP_OMDB_KEY;
@@ -72,7 +73,6 @@ function App() {
   return (
     <Router>
       <Nav search={search} setSearch={setSearch} />
-
       <Switch>
         <Route path="/search">
           <Search
@@ -91,6 +91,7 @@ function App() {
           <Home />
         </Route>
       </Switch>
+      {/* <Footer /> */}
     </Router>
   );
 }

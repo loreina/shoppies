@@ -62,7 +62,7 @@ export default function SearchBar({ setSearch, ...props }) {
         placeholder="Search"
         type="text"
         {...props}
-      ></Input>
+      />
     </Box>
   );
 }

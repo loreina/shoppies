@@ -18,7 +18,7 @@ export default function Search({
     <>
       {toast === true && <Toast />}
       {!!search ? (
-        <>
+        <div style={{ minHeight: "85vh" }}>
           <Heading style={{ marginLeft: "2rem" }}>
             Results for "{search}"
           </Heading>
@@ -29,9 +29,15 @@ export default function Search({
             nominations={nominations}
             search={search}
           />
-        </>
+        </div>
       ) : (
-        <div style={{ margin: "20% 35%", textAlign: "center" }}>
+        <div
+          style={{
+            margin: "20% 35%",
+            paddingBottom: "5rem",
+            textAlign: "center",
+          }}
+        >
           <CTA>
             What's your favourite movie?{" "}
             <span role="img" alt="movie camera" aria-label="movie camera">
