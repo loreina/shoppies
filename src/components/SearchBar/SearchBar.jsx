@@ -40,7 +40,7 @@ const Input = styled.input`
     &:focus {
       transition: margin-left 0.3s;
       margin-left: -10rem;
-      width: 200%;
+      width: calc(100% + 10rem);
     }
   }
 `;

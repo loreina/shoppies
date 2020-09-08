@@ -18,6 +18,10 @@ const NavItem = styled.p`
   color: ${theme.colors.ink.light};
   padding: 0.2rem 3rem;
   margin: 0;
+
+  @media (max-width: 576px) {
+    padding: 0.2rem 2rem;
+  }
 `;
 
 export default function Nav({ search, setSearch, ...props }) {
