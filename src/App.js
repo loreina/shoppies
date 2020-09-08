@@ -16,25 +16,38 @@ const nominationList = localStorage.getItem("nominations")
 function App() {
   const [search, setSearch] = useState("");
   const [movies, setMovies] = useState([]);
-
   const [nominations, updateNominations] = useState(nominationList);
+  const [toast, setToast] = useState(false);
 
   const nominateMovie = (movie) => {
     updateNominations([...nominations, movie]);
+    if (nominations.length + 1 === 5) {
+      setToast(true);
+    }
+    console.log(toast);
+    console.log(nominations.length);
   };
+
+  useEffect(() => {
+    if (toast === true) {
+      setTimeout(() => {
+        setToast(false);
+      }, 3000);
+    }
+  }, [toast]);
 
   const removeMovie = (movie) => {
     updateNominations(nominations.filter((nominees) => movie !== nominees));
   };
 
-  function isNominated(movie) {
+  const isNominated = (movie) => {
     for (let i = 0; i < nominations.length; i++) {
       if (nominations[i].imdbID === movie.imdbID) {
         return true;
       }
     }
     return false;
-  }
+  };
 
   useEffect(() => {
     localStorage.setItem("nominations", JSON.stringify(nominations));
@@ -63,6 +76,7 @@ function App() {
       <Switch>
         <Route path="/search">
           <Search
+            toast={toast}
             isNominated={isNominated}
             movies={movies}
             nominateMovie={nominateMovie}

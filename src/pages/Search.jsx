@@ -1,8 +1,10 @@
 import React from "react";
 
+import CTA from "../components/CTA/CTA";
 import Heading from "../components/Heading/Heading";
 import Results from "../components/Results/Results";
 import Text from "../components/Text/Text";
+import Toast from "../components/Toast/Toast";
 
 export default function Search({
   isNominated,
@@ -10,12 +12,16 @@ export default function Search({
   nominateMovie,
   nominations,
   search,
+  toast,
 }) {
   return (
     <>
+      {toast === true && <Toast />}
       {!!search ? (
         <>
-          <Heading>Results for "{search}"</Heading>
+          <Heading style={{ marginLeft: "2rem" }}>
+            Results for "{search}"
+          </Heading>
           <Results
             isNominated={isNominated}
             movies={movies}
@@ -25,9 +31,18 @@ export default function Search({
           />
         </>
       ) : (
-        <Text style={{ margin: "20% 35%" }}>
-          Search for up to 5 movies to nominate for the Shoppies.
-        </Text>
+        <div style={{ margin: "20% 35%", textAlign: "center" }}>
+          <CTA>
+            What's your favourite movie?{" "}
+            <span role="img" alt="movie camera" aria-label="movie camera">
+              🎥
+            </span>
+          </CTA>
+          <Text>
+            You can nominate up to 5 of your all-time favourites for the
+            Shoppies.
+          </Text>
+        </div>
       )}
     </>
   );

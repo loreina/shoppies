@@ -88,21 +88,19 @@ export default function NominationList({ movies, removeMovie, ...props }) {
   return (
     <Wrapper>
       {movies.map((m) => (
-        <>
-          <Box>
-            <Poster
-              src={m.Poster}
-              onError={(e) => (e.target.style.display = "none")}
-            />
-            <Right>
-              <Title>{m.Title}</Title>
-              <Year>{m.Year}</Year>
-              <ButtonBox>
-                <Button onClick={(e) => removeMovie(m)}>REMOVE</Button>
-              </ButtonBox>
-            </Right>
-          </Box>
-        </>
+        <Box key={m.imdbID}>
+          <Poster
+            src={m.Poster}
+            onError={(e) => (e.target.style.display = "none")}
+          />
+          <Right>
+            <Title>{m.Title}</Title>
+            <Year>{m.Year}</Year>
+            <ButtonBox>
+              <Button onClick={(e) => removeMovie(m)}>REMOVE</Button>
+            </ButtonBox>
+          </Right>
+        </Box>
       ))}
     </Wrapper>
   );

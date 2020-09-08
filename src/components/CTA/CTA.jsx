@@ -1,12 +1,13 @@
 import styled from "styled-components";
+
 import theme from "../../styles/theme";
 
-const Heading = styled.h1`
-  font-size: 32px;
-  font-weight: bold;
+const CTA = styled.h1`
+  font-size: 40px;
+  font-weight: 900;
   color: ${theme.colors.ink.light};
-  margin-bottom: 0;
   width: 100%;
+  line-height: 120%;
 `;
 
-export default Heading;
+export default CTA;

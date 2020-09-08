@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 import theme from "../../styles/theme";
 import Button from "../Button/Button";
+import CTA from "../CTA/CTA";
 
 const Box = styled.div`
   margin: 12rem 8rem;
@@ -33,14 +34,6 @@ const TextBox = styled.div`
   width: 80%;
 `;
 
-const CTA = styled.h1`
-  font-size: 40px;
-  font-weight: 900;
-  color: ${theme.colors.ink.light};
-  width: 100%;
-  line-height: 120%;
-`;
-
 const Text = styled.p`
   color: ${theme.colors.ink.light};
 `;
@@ -58,7 +51,7 @@ const HeroButton = styled(Button)`
   }
 `;
 
-export default function Hero(nominations) {
+export default function Hero() {
   return (
     <Box>
       <TextBox>
