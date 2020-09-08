@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 import theme from "../../styles/theme";
 
@@ -22,9 +23,15 @@ const NavItem = styled.p`
 export default function Nav({ search, setSearch, ...props }) {
   return (
     <Box>
-      <Logo />
-      <NavItem>My Nominations</NavItem>
-      <SearchBar value={search} setSearch={setSearch} />
+      <Link to="/">
+        <Logo />
+      </Link>
+      <Link to="/nominations" style={{ textDecoration: "none" }}>
+        <NavItem>Nominations</NavItem>
+      </Link>
+      <Link to="/search" style={{ textDecoration: "none", width: "600px" }}>
+        <SearchBar value={search} setSearch={setSearch} />
+      </Link>
     </Box>
   );
 }

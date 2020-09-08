@@ -8,7 +8,7 @@ const Box = styled.div`
   margin: 0;
   display: flex;
   flex-direction: row;
-  width: 60%;
+  width: 100%;
 `;
 
 const Icon = styled.img`

@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
-import "./App.css";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import Movies from "./components/Movies/Movies";
+import Home from "./pages/Home";
+import Nominations from "./pages/Nominations";
+import Search from "./pages/Search";
+
 import Nav from "./components/Nav/Nav";
-import Nominations from "./components/Nominations/Nominations";
 
 const OMDB_KEY = process.env.REACT_APP_OMDB_KEY;
 
@@ -55,24 +57,27 @@ function App() {
   }, [search]);
 
   return (
-    <div>
+    <Router>
       <Nav search={search} setSearch={setSearch} />
-      {!!search ? (
-        <>
-          <Movies
-            heading={`Results for "${search}"`}
+
+      <Switch>
+        <Route path="/search">
+          <Search
+            isNominated={isNominated}
             movies={movies}
             nominateMovie={nominateMovie}
             nominations={nominations}
             search={search}
-            isNominated={isNominated}
           />
-        </>
-      ) : (
-        ""
-      )}
-      <Nominations movies={nominations} removeMovie={removeMovie} />
-    </div>
+        </Route>
+        <Route path="/nominations">
+          <Nominations movies={nominations} removeMovie={removeMovie} />
+        </Route>
+        <Route path="/">
+          <Home />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 

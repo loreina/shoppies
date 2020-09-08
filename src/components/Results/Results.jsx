@@ -10,15 +10,6 @@ const Wrapper = styled.div`
   flex-wrap: wrap;
 `;
 
-const Heading = styled.h1`
-  font-size: 32px;
-  font-weight: bold;
-  color: ${theme.colors.ink.light};
-  margin-left: 2rem;
-  margin-bottom: 0;
-  width: 100%;
-`;
-
 const Box = styled.div`
   width: 100%;
   height: 250px;
@@ -89,7 +80,7 @@ const ButtonBox = styled.div`
   bottom: 20px;
 `;
 
-export default function Movies({
+export default function Results({
   isNominated,
   movies,
   nominateMovie,
@@ -98,7 +89,6 @@ export default function Movies({
 }) {
   return (
     <>
-      <Heading>{props.heading}</Heading>
       <Wrapper>
         {movies.Search?.map((m) => (
           <Box key={m.imdbID}>

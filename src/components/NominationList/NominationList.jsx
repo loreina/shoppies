@@ -32,15 +32,6 @@ const Wrapper = styled.div`
   }
 `;
 
-const Heading = styled.h1`
-  font-size: 32px;
-  font-weight: bold;
-  color: ${theme.colors.ink.light};
-  margin-bottom: 2rem;
-  width: 100%;
-  text-align: center;
-`;
-
 const Box = styled.div`
   width: 100%;
   height: 125px;
@@ -93,10 +84,9 @@ const ButtonBox = styled.div`
   bottom: 2.7rem;
 `;
 
-export default function Nominations({ movies, removeMovie, ...props }) {
+export default function NominationList({ movies, removeMovie, ...props }) {
   return (
     <Wrapper>
-      <Heading>Nominations</Heading>
       {movies.map((m) => (
         <>
           <Box>
