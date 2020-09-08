@@ -3,7 +3,7 @@ import "./App.css";
 
 import Movies from "./components/Movies/Movies";
 import Nav from "./components/Nav/Nav";
-import SearchBar from "./components/SearchBar/SearchBar";
+import Nominations from "./components/Nominations/Nominations";
 
 const OMDB_KEY = process.env.REACT_APP_OMDB_KEY;
 
@@ -56,9 +56,7 @@ function App() {
 
   return (
     <div>
-      <Nav>
-        <SearchBar value={search} setSearch={setSearch} />
-      </Nav>
+      <Nav search={search} setSearch={setSearch} />
       {!!search ? (
         <>
           <Movies
@@ -73,16 +71,7 @@ function App() {
       ) : (
         ""
       )}
-
-      <h1>Nominations</h1>
-      {nominations.map((n) => (
-        <>
-          <p>
-            {n.Title} ({n.Year})
-          </p>
-          <button onClick={(e) => removeMovie(n)}>Remove</button>
-        </>
-      ))}
+      <Nominations movies={nominations} removeMovie={removeMovie} />
     </div>
   );
 }

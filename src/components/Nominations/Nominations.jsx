@@ -6,8 +6,10 @@ import Button from "../Button/Button";
 
 const Wrapper = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
+  width: 50%;
+  margin: 0 25%;
 `;
 
 const Heading = styled.h1`
@@ -15,38 +17,21 @@ const Heading = styled.h1`
   font-weight: bold;
   color: ${theme.colors.ink.light};
   margin-left: 2rem;
-  margin-bottom: 0;
+  margin-bottom: 2rem;
   width: 100%;
+  text-align: center;
 `;
 
 const Box = styled.div`
   width: 100%;
-  height: 250px;
+  height: 125px;
+  margin: 1rem 0;
   background-color: ${theme.colors.white};
   display: flex;
   flex-direction: row;
   border-radius: 16px;
-  margin: 2rem;
   overflow-x: hidden;
   filter: drop-shadow(0px 8px 20px rgba(69, 79, 91, 0.1));
-
-  @media (min-width: 576px) {
-    width: 100%;
-  }
-
-  @media (min-width: 768px) {
-    width: 100%;
-    margin-bottom: 0;
-  }
-
-  @media (min-width: 992px) {
-    width: 45%;
-    margin-right: 0;
-  }
-
-  @media (min-width: 1200px) {
-    width: 30%;
-  }
 `;
 
 const Right = styled.div`
@@ -57,7 +42,7 @@ const Right = styled.div`
 `;
 
 const Poster = styled.img`
-  max-width: 40%;
+  object-fit: contain;
   height: 100%;
   border-radius: 16px 0px 0px 16px;
 `;
@@ -66,7 +51,7 @@ const Title = styled.h2`
   font-size: 24px;
   font-weight: bold;
   color: ${theme.colors.ink.light};
-  padding: 16px 0;
+  padding: 24px 0 12px 0;
   text-align: left;
   margin: 0;
   display: inline-block;
@@ -85,23 +70,17 @@ const Year = styled.p`
 
 const ButtonBox = styled.div`
   position: absolute;
-  right: 20px;
-  bottom: 20px;
+  right: 3rem;
+  bottom: 3rem;
 `;
 
-export default function Movies({
-  isNominated,
-  movies,
-  nominateMovie,
-  nominations,
-  ...props
-}) {
+export default function Nominations({ movies, removeMovie, ...props }) {
   return (
-    <>
-      <Heading>{props.heading}</Heading>
-      <Wrapper>
-        {movies.Search?.map((m) => (
-          <Box key={m.imdbID}>
+    <Wrapper>
+      <Heading>Nominations</Heading>
+      {movies.map((m) => (
+        <>
+          <Box>
             <Poster
               src={m.Poster}
               onError={(e) => (e.target.style.display = "none")}
@@ -110,17 +89,12 @@ export default function Movies({
               <Title>{m.Title}</Title>
               <Year>{m.Year}</Year>
               <ButtonBox>
-                <Button
-                  onClick={(e) => nominateMovie(m)}
-                  disabled={isNominated(m) || nominations.length === 5}
-                >
-                  {isNominated(m) ? "Nominated" : "Nominate"}
-                </Button>
+                <Button onClick={(e) => removeMovie(m)}>Remove</Button>
               </ButtonBox>
             </Right>
           </Box>
-        ))}
-      </Wrapper>
-    </>
+        </>
+      ))}
+    </Wrapper>
   );
 }

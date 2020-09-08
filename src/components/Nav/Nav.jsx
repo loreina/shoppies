@@ -2,7 +2,9 @@ import React from "react";
 import styled from "styled-components";
 
 import theme from "../../styles/theme";
+
 import Logo from "../Logo/Logo";
+import SearchBar from "../SearchBar/SearchBar";
 
 const Box = styled.div`
   display: flex;
@@ -17,12 +19,12 @@ const NavItem = styled.p`
   margin: 0;
 `;
 
-export default function Nav(props) {
+export default function Nav({ search, setSearch, ...props }) {
   return (
     <Box>
       <Logo />
       <NavItem>My Nominations</NavItem>
-      {props.children}
+      <SearchBar value={search} setSearch={setSearch} />
     </Box>
   );
 }
