@@ -7,7 +7,7 @@ const Box = styled.div`
   background-color: ${theme.colors.ink.base};
   position: relative;
   bottom: 0;
-  width: 100%;
+  max-width: 100%;
   height: 12rem;
   padding: 2rem 0 0.5rem 2rem;
   display: flex;

@@ -9,6 +9,7 @@ const Wrapper = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   padding-bottom: 2rem;
+  max-width: 100%;
 `;
 
 const Box = styled.div`
@@ -46,12 +47,17 @@ const Right = styled.div`
   padding: 0 24px;
   display: flex;
   flex-direction: column;
+  width: 100%;
 `;
 
 const Poster = styled.img`
   max-width: 40%;
   height: 100%;
   border-radius: 16px 0px 0px 16px;
+`;
+
+const TextBox = styled.div`
+  height: 75%;
 `;
 
 const Title = styled.h2`
@@ -76,9 +82,19 @@ const Year = styled.p`
 `;
 
 const ButtonBox = styled.div`
-  position: absolute;
-  right: 20px;
-  bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-content: center;
+  align-items: center;
+  max-height: 100%;
+`;
+
+const StyledButton = styled(Button)`
+  order: 1;
+  flex: 0 1 auto;
+  align-self: flex-end;
 `;
 
 export default function Results({
@@ -98,15 +114,17 @@ export default function Results({
               onError={(e) => (e.target.style.display = "none")}
             />
             <Right>
-              <Title>{m.Title}</Title>
-              <Year>{m.Year}</Year>
+              <TextBox>
+                <Title>{m.Title}</Title>
+                <Year>{m.Year}</Year>
+              </TextBox>
               <ButtonBox>
-                <Button
+                <StyledButton
                   onClick={(e) => nominateMovie(m)}
                   disabled={isNominated(m) || nominations.length === 5}
                 >
                   {isNominated(m) ? "Nominated" : "Nominate"}
-                </Button>
+                </StyledButton>
               </ButtonBox>
             </Right>
           </Box>
