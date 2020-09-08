@@ -6,8 +6,31 @@ import theme from "../../styles/theme";
 import Button from "../Button/Button";
 
 const Box = styled.div`
-  margin: 15rem 12rem;
-  width: 25%;
+  margin: 12rem 8rem;
+  width: 100%;
+
+  @media (min-width: 576px) {
+    margin: 8rem 6rem;
+    width: 75%;
+  }
+
+  @media (min-width: 768px) {
+    margin: 8rem;
+    width: 80%;
+  }
+
+  @media (min-width: 992px) {
+    width: 50%;
+  }
+
+  @media (min-width: 1200px) {
+    margin: 15rem 12rem;
+    width: 40%;
+  }
+`;
+
+const TextBox = styled.div`
+  width: 80%;
 `;
 
 const CTA = styled.h1`
@@ -38,11 +61,13 @@ const HeroButton = styled(Button)`
 export default function Hero(nominations) {
   return (
     <Box>
-      <CTA>Your favourite movie awards for entrepreneurs.</CTA>
-      <Text>
-        Keep track of your 5 all-time favourite movies and nominate them for the
-        2020 Shoppies.
-      </Text>
+      <TextBox>
+        <CTA>Your favourite movie awards for entrepreneurs.</CTA>
+        <Text>
+          Keep track of your 5 all-time favourite movies and nominate them for
+          the 2020 Shoppies.
+        </Text>
+      </TextBox>
       <Link to="/search" style={{ textDecoration: "none" }}>
         <HeroButton>Search movies</HeroButton>
       </Link>

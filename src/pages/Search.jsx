@@ -2,6 +2,7 @@ import React from "react";
 
 import Heading from "../components/Heading/Heading";
 import Results from "../components/Results/Results";
+import Text from "../components/Text/Text";
 
 export default function Search({
   isNominated,
@@ -24,7 +25,9 @@ export default function Search({
           />
         </>
       ) : (
-        ""
+        <Text style={{ margin: "20% 35%" }}>
+          Search for up to 5 movies to nominate for the Shoppies.
+        </Text>
       )}
     </>
   );
