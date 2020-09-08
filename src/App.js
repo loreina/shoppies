@@ -40,7 +40,7 @@ function App() {
 
   async function searchMovies(search) {
     const res = await fetch(
-      `http://www.omdbapi.com/?apikey=${OMDB_KEY}&type=movie&s=${search}`
+      `https://www.omdbapi.com/?apikey=${OMDB_KEY}&type=movie&s=${search}`
     );
     const data = await res.json();
     setMovies(data);
